@@ -1,7 +1,7 @@
 import random
 import string
 
-char_valves = string.ascii_letters + string.punctuation + string.digits
+char_values = string.ascii_letters + string.punctuation + string.digits
 pass_len = int(input("Enter the length of password = "))
 
 password = ""
