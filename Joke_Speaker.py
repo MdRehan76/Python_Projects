@@ -1,10 +1,10 @@
 import pyjokes
-import pyttsx3
+import win32com.client
 
 print("Welcome to Joke Speaker !... Have Fun")
 
-engine = pyttsx3.init()
-engine.setProperty("rate",130)
+speaker = win32com.client.Dispatch("SAPI.SpVoice")
+speaker.Rate = -2  # Speed: -10 (slowest) to 10 (fastest), -2 is similar to rate 130
 
 while True:
     try:
@@ -19,19 +19,16 @@ while True:
 for i in range(1,n+1):
     joke = pyjokes.get_joke()
     print(f"\n{i}. {joke}")
-    engine.say(joke)
-    engine.runAndWait()
+    speaker.Speak(joke)
     if i < n:
         x = input("If you want to Quit so press 'Q' or press any key to continue : ")
     
         if x.upper() == "Q":
             goodbye_msg = ("Thank You for listening Jokes,Be Happy")
             print(goodbye_msg+"😀😀")
-            engine.say(goodbye_msg)
-            engine.runAndWait()
+            speaker.Speak(goodbye_msg)
             break
 else:
     goodbye_msg = ("Thank You for listening Jokes,Be Happy")
     print(goodbye_msg+"😀😀")
-    engine.say(goodbye_msg)
-    engine.runAndWait()
+    speaker.Speak(goodbye_msg)

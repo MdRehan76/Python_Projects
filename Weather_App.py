@@ -1,10 +1,10 @@
 import requests
 import json 
-import pyttsx3
+import win32com.client
 import os 
 
-engine = pyttsx3.init()
-engine.setProperty("rate",130)
+speaker = win32com.client.Dispatch("SAPI.SpVoice")
+speaker.Rate = -2
 
 city = input("Enter the City Name = ")
 
@@ -41,8 +41,7 @@ def climate():
     Weather = (wdic["weather"][0]["main"])          # we use 0 due to it is a list other is dictionary
     C_statement = f"The Weather is {Weather} in {city}"
     print(C_statement)
-    engine.say(C_statement)
-    engine.runAndWait()
+    speaker.Speak(C_statement)
 
 def Temp():
     ktemp = (wdic["main"]["temp"])
@@ -50,16 +49,14 @@ def Temp():
     T_statement = f"The Temperature is {ktemp}°C in {city}"
 
     print(T_statement)
-    engine.say(T_statement)
-    engine.runAndWait()
+    speaker.Speak(T_statement)
 
 def Feels_Like():
     Ftemp = (wdic["main"]["feels_like"])
     Ftemp = int(Ftemp - 273)
     F_statement = f"The Feels Like Temperature is {Ftemp}°C in {city}"
     print(F_statement)
-    engine.say(F_statement)
-    engine.runAndWait()
+    speaker.Speak(F_statement)
 
 def Visibility():
     Visible = (wdic["visibility"])
@@ -67,9 +64,7 @@ def Visibility():
     V_statement = f"The Visibility is {Visible}Km in {city}"
 
     print(V_statement)
-    engine.say(V_statement)
-    engine.runAndWait()
-
+    speaker.Speak(V_statement)
 
 climate()
 Temp()
@@ -77,5 +72,4 @@ Feels_Like()
 Visibility()
 wish = ("\nThank You!...")
 print(wish)
-engine.say(wish)
-engine.runAndWait()
+speaker.Speak(wish)

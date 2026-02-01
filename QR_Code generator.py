@@ -10,3 +10,4 @@ qr.make(fit=True)
 
 img = qr.make_image(fill_color = "pink",back_color = "Black")
 img.save("Rehan_GitHub_Profile.png")
+print("The QRCode is generated successfully")
